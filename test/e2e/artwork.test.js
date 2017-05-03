@@ -25,4 +25,10 @@ describe('artwork API', () => {
       });
   });
 
+  it('GET by id should return document', () => {
+    return request.get(`/artworks/${nude._id}`)
+      .then(res => res.body)
+      .then(got => assert.deepEqual(got, nude));
+  });
+
 });
