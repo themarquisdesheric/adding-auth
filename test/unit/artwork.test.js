@@ -3,7 +3,7 @@ const Artwork = require('../../lib/models/artwork');
 
 describe('artwork model', () => {
 
-  it.only('ensures invalid documents are not accepted', () => {
+  it('ensures invalid documents are not accepted', () => {
     const invalidArtwork = new Artwork();
 
     return invalidArtwork.validate()
@@ -15,6 +15,12 @@ describe('artwork model', () => {
         assert.ok(errors.artist && errors.artist.kind === 'required');
         assert.ok(errors.medium && errors.medium.kind === 'required');
       });
+  });
+
+  it('accepts valid documents', () => {
+    const validArtwork = new Artwork({ name: 'Nude Descending A Staircase', artist: 'Duchamp', medium: 'oil' });
+
+    return validArtwork.validate();
   });
 
 });
