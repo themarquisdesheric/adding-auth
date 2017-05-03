@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/themarquisdesheric/adding-auth/issues"
   },
-  "homepage": "https://github.com/themarquisdesheric/adding-auth#readme"
+  "homepage": "https://github.com/themarquisdesheric/adding-auth#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "http": "0.0.0"
+  }
 }
