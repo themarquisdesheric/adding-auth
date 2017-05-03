@@ -12,4 +12,15 @@ describe('artwork API', () => {
       .then(art => assert.deepEqual(art, []));
   });
 
+  let nude = { name: 'Nude Descending A Staircase', artist: 'Duchamp', medium: 'oil' };
+
+  it('POST should add a document', () => {
+    return request.post('/artworks')
+      .send(nude)
+      .then(res => res.body)
+      .then(artwork => {
+        assert.ok(artwork._id);
+      });
+  });
+
 });
