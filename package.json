@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "mocha",
     "start": "nodemon server.js"
@@ -20,10 +21,12 @@
   "homepage": "https://github.com/themarquisdesheric/adding-auth#readme",
   "dependencies": {
     "express": "^4.15.2",
-    "http": "0.0.0"
+    "http": "0.0.0",
+    "mongoose": "^4.9.7"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "chai-http": "^3.0.0"
+    "chai-http": "^3.0.0",
+    "eslint": "^3.19.0"
   }
 }
