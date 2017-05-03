@@ -22,13 +22,16 @@
   },
   "homepage": "https://github.com/themarquisdesheric/adding-auth#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "http": "0.0.0",
-    "mongoose": "^4.9.7"
+    "mongoose": "^4.9.7",
+    "morgan": "^1.8.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
-    "eslint": "^3.19.0"
+    "eslint": "^3.19.0",
+    "mocha": "^3.3.0"
   }
 }
