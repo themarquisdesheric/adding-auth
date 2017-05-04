@@ -16,6 +16,12 @@ describe('ensure auth middleware', () => {
     assert.deepEqual(error, { code: 401, error: 'No Authorization Provided' });
   });
 
+  it('calls next when valid authorization header provided', done => {
+    const req ={
+      get(header) { return header === 'Authorization' ? 'sekrit' : ''; }
+    };
 
+    ensureAuth(req, null, done);
+  });
 
 });
