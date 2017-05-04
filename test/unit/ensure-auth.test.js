@@ -1,4 +1,5 @@
 const assert = require('chai').assert;
+const ensureAuth = require('../../lib/auth/ensure-auth')();
 
 describe('ensure auth middleware', () => {
 
@@ -15,6 +16,6 @@ describe('ensure auth middleware', () => {
     assert.deepEqual(error, { code: 401, error: 'No Authorization Provided' });
   });
 
-  
+
 
 });
