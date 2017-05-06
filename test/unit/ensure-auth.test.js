@@ -17,12 +17,17 @@ describe('ensure auth middleware', () => {
 
   });
 
-  it('calls next when valid authorization header provided', done => {
+  it('routes to error handler with bad token', done => {
     const req ={
-      get(header) { return header === 'Authorization' ? 'sekrit' : ''; }
+      get() { return 'invalid token'; }
     };
 
-    ensureAuth(req, null, done);
+    const next = error => {
+      assert.deepEqual(error, { code: 401, error: 'Authorization Failed' });
+      done();
+    };
+
+    ensureAuth(req, null, next);
   });
 
 });
