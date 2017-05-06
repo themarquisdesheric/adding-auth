@@ -3,17 +3,18 @@ const ensureAuth = require('../../lib/auth/ensure-auth')();
 
 describe('ensure auth middleware', () => {
 
-  it('routes to error handler when no token found in Authorization header', () => {
+  it('routes to error handler when no token found in Authorization header', done => {
     const req = {
       get() { return ''; }
     };
 
-    let error;
-    const next = err => error = err;
+    const next = error => {
+      assert.deepEqual(error, { code: 401, error: 'No Authorization Found' });
+      done();
+    };
 
     ensureAuth(req, null, next);
 
-    assert.deepEqual(error, { code: 401, error: 'No Authorization Provided' });
   });
 
   it('calls next when valid authorization header provided', done => {
