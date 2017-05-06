@@ -1,5 +1,6 @@
 const assert = require('chai').assert;
 const ensureAuth = require('../../lib/auth/ensure-auth')();
+const tokenService = require('jsonwebtoken-promisified');
 
 describe('ensure auth middleware', () => {
 
@@ -28,6 +29,26 @@ describe('ensure auth middleware', () => {
     };
 
     ensureAuth(req, null, next);
+  });
+
+  it('calls "next" on valid authorization', done => {
+    const payload = { _id: '123' };
+
+    tokenService.sign(payload)
+      .then(token => {
+        const req= {
+          get(header) { return header === 'Authorization' ? token : null; }
+        };
+
+        const next = error => {
+          assert.isNotOk(error);
+          assert.equal(req.user.id, payload._id);
+          done();
+        };
+
+        ensureAuth(req, null, next);
+      })
+      .catch(done);
   });
 
 });
