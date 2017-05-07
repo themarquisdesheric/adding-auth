@@ -43,6 +43,10 @@ describe('auth', () => {
         .then(res => assert.ok(token = res.body.token));
     });
 
+    it('throws error if username already in use', () => {
+      badRequest('/auth/signup', user, 400, 'email in use');
+    });
+
   });
 
 });
