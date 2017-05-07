@@ -6,10 +6,10 @@ describe('auth', () => {
 
   before(db.drop);
 
-  // const user = {
-  //   username: 'user',
-  //   password: 'abc'
-  // };
+  const user = {
+    username: 'user',
+    password: 'abc'
+  };
 
   describe('user management', () => {
     
@@ -27,11 +27,20 @@ describe('auth', () => {
     };
 
     it('signup requires username', () => {
-      badRequest('/auth/signup', { password: 'abc' }, 400, 'username and password must be supplied');
+      badRequest('/auth/signup', { password: 'abc' }, 400, 'email and password must be supplied');
     });
 
     it('signup requires password', () => {
-      badRequest('/auth/signup', { username: 'user' }, 400, 'username and password must be supplied');
+      badRequest('/auth/signup', { username: 'user' }, 400, 'email and password must be supplied');
+    });
+    //eslint-disable-next-line
+    let token = '';
+
+    it('signup', () => {
+      request
+        .post('/auth/signup')
+        .send(user)
+        .then(res => assert.ok(token = res.body.token));
     });
 
   });
