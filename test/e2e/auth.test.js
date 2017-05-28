@@ -34,21 +34,18 @@ describe('auth', () => {
       return badRequest('/auth/signup', { username: 'user' }, 401, 'email and password must be supplied');
     });
 
-    // let token = '';
+    let token = '';
 
     it('signup', () => {
       request
         .post('/auth/signup')
         .send(user)
         .then(res => {
-          console.log('RESPOOOONSE', res);
+          token = res.body.token;
 
-          assert.ok(res.body.token);
-          // token = res.body.token;
+          assert.ok(token);
         });
     });
-
-    
 
     it('throws error if username already in use', () => {
       badRequest('/auth/signup', user, 400, 'email in use');

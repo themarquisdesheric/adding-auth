@@ -19,7 +19,7 @@ describe('ensure auth middleware', () => {
   });
 
   it('routes to error handler with bad token', done => {
-    const req ={
+    const req = {
       get() { return 'invalid token'; }
     };
 
