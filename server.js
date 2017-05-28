@@ -1,6 +1,7 @@
 /* eslint no-console: "off" */
 const http = require('http');
 const app = require('./lib/app');
+require('./lib/connect');
 
 const server = http.createServer(app);
 const PORT = process.env.PORT || 3000;

@@ -27,21 +27,28 @@ describe('auth', () => {
     };
 
     it('signup requires username', () => {
-      badRequest('/auth/signup', { password: 'abc' }, 400, 'email and password must be supplied');
+      return badRequest('/auth/signup', { password: 'abc' }, 401, 'email and password must be supplied');
     });
 
     it('signup requires password', () => {
-      badRequest('/auth/signup', { username: 'user' }, 400, 'email and password must be supplied');
+      return badRequest('/auth/signup', { username: 'user' }, 401, 'email and password must be supplied');
     });
-    //eslint-disable-next-line
-    let token = '';
+
+    // let token = '';
 
     it('signup', () => {
       request
         .post('/auth/signup')
         .send(user)
-        .then(res => assert.ok(token = res.body.token));
+        .then(res => {
+          console.log('RESPOOOONSE', res);
+
+          assert.ok(res.body.token);
+          // token = res.body.token;
+        });
     });
+
+    
 
     it('throws error if username already in use', () => {
       badRequest('/auth/signup', user, 400, 'email in use');
