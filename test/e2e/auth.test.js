@@ -7,7 +7,7 @@ describe('auth', () => {
   before(db.drop);
 
   const user = {
-    username: 'user',
+    email: 'user',
     password: 'abc'
   };
 
