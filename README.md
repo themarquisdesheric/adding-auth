@@ -8,4 +8,4 @@ A secure Express/Mongoose REST API data server with the following CRUD methods: 
 
 ## Testing
 
-* Contains E2E/API auth tests for signup and signin using Mocha and Chai.
+* Contains E2E/unit auth tests for signup and signin using Mocha and Chai.
